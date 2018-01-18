@@ -8,6 +8,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kolejka/1.unity
     guid: d21783cf9537ff5438f6078b85f33fc8
-  - enabled: 1
-    path: Assets/Kolejka/2.unity
-    guid: 7a0bba63a8b98314891975b37b41ec5a

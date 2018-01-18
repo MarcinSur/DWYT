@@ -15,7 +15,7 @@ public class FirebaseAuthentication : MonoBehaviour
 
     public Text debugText;
     public Kolejka.Events.Event onSignInEvent;
-    public TMPro.TMP_InputField inptMessage;
+    public InputField inptMessage;
 
     private FirebaseAuth auth;
     DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
@@ -50,15 +50,16 @@ public class FirebaseAuthentication : MonoBehaviour
         app.SetEditorDatabaseUrl("https://kolejka-3eb2b.firebaseio.com/");
         if (app.Options.DatabaseUrl != null) app.SetEditorDatabaseUrl(app.Options.DatabaseUrl);
 
-        StartListener();
+        StartCoroutine(StartListener());
 
         //likesRef.KeepSynced(true);
 
         AuthStateChanged(this, null);
     }
 
-    protected void StartListener()
+    IEnumerator StartListener()
     {
+        yield return new WaitForEndOfFrame();
         FirebaseDatabase.DefaultInstance
             .GetReference("messages")
             .ChildAdded += AddChildTodatabse;
@@ -68,14 +69,15 @@ public class FirebaseAuthentication : MonoBehaviour
     {
         if (e.DatabaseError != null)
         {
-            Debug.LogError(e.DatabaseError.Message);
+            Debug.LogError("AddChildTodatabse" + e.DatabaseError.Message);
             return;
         }
+
+        Debug.LogWarning("AddChildToDatabase");
 
         var msgDict = (IDictionary<string, object>)e.Snapshot.Value;
         Message msg = new Message(msgDict);
         panelChat.CreateRow(msg);
-
     }
 
     public PanelChat panelChat;

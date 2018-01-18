@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class MessageView : MonoBehaviour {
 
-    public Text name;
+    public Text namet;
     public Text url;
     public Text content;
 
     public void Initialize(Message msg)
     {
-        name.text = msg.name;
+        namet.text = msg.namet;
         url.text = msg.url;
         content.text = msg.content;
     }

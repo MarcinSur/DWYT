@@ -7,7 +7,7 @@ namespace Assets.Kolejka.Scripts
 {
     public class Message
     {
-        public string name;
+        public string namet;
         public string url;
         public string content;
 
@@ -16,16 +16,16 @@ namespace Assets.Kolejka.Scripts
 
         }
 
-        public Message(string name, string url, string content)
+        public Message(string namet, string url, string content)
         {
-            this.name = name;
+            this.namet = namet;
             this.url = url;
             this.content = content;
         }
 
         public Message(IDictionary<string, object> dict)
         {
-            this.name = dict["name"].ToString();
+            this.namet = dict["namet"].ToString();
             this.url = dict["url"].ToString();
             this.content = dict["content"].ToString();
         }
